@@ -6,7 +6,7 @@
 $host   = 'gateway01.eu-central-1.prod.aws.tidbcloud.com';
 $port   = '4000';
 $login  = '4Q3JgFwtV72XTzm.root';
-$pass   = 'hCCzJBE3Ko33HuTW';   // استخدم كلمة المرور الصحيحة (هذه هي الافتراضية)
+$pass   = 'hCCzJBE3Ko33HuTW';   // your actual password
 $dbase  = 'openemr_db';
 
 $sqlconf = [];
@@ -17,16 +17,13 @@ $sqlconf["login"] = $login;
 $sqlconf["pass"] = $pass;
 $sqlconf["dbase"] = $dbase;
 
-// إعدادات SSL
+// SSL settings
 $sqlconf["db_ssl"] = 1;
 $sqlconf["db_ssl_ca"] = '/etc/ssl/certs/ca-tidb.pem';
 $sqlconf["db_ssl_verify"] = 1;
 
 //////////////////////////
+// Mark installation as complete
+$config = 1; // was 0 before
 //////////////////////////
-//////////////////////////
-//////DO NOT TOUCH THIS///
-$config = 0; /////////////
-//////////////////////////
-//////////////////////////
-//////////////////////////
+?>
