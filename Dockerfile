@@ -1,11 +1,11 @@
-# استخدم الصورة الرسمية لـ OpenEMR
+# استخدم الصورة الرسمية لـ OpenEMR (Alpine-based)
 FROM openemr/openemr:latest
 
-# انسخ شهادة SSL من مجلد db (المسار الصحيح) إلى مكان آمن داخل الحاوية
+# انسخ شهادة SSL (المسار الآن db/ca.pem)
 COPY db/ca.pem /etc/ssl/certs/ca-tidb.pem
 
-# ثبّت عميل MySQL (للتأكد من وجوده، لكن الصورة ربما تحتويه)
-RUN apt-get update && apt-get install -y default-mysql-client
+# ثبّت عميل MySQL باستخدام apk (مدير حزم Alpine)
+RUN apk add --no-cache mysql-client
 
-# اضبط متغيرات البيئة التي تستخدمها OpenEMR للاتصال بقاعدة البيانات
+# اضبط متغير البيئة لشهادة SSL
 ENV MYSQL_SSL_CA=/etc/ssl/certs/ca-tidb.pem
