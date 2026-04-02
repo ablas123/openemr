@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  openemr:
+    build: .
+    container_name: openemr-app
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      MYSQL_HOST: gateway01.eu-central-1.prod.aws.tidbcloud.com
+      MYSQL_PORT: 4000
+      MYSQL_USER: 4Q3JgFwtV72XTzm.root
+      MYSQL_PASSWORD: hCCzJBE3Ko33HuTW
+      MYSQL_DATABASE: openemr_db
+      MYSQL_SSL_CA: /etc/ssl/certs/ca-tidb.pem
+      OE_USER: admin
+      OE_PASS: admin123
+    volumes:
+      - site_data:/var/www/localhost/htdocs/openemr/sites
+
+volumes:
+  site_data:
